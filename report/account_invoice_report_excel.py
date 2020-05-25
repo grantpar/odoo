@@ -19,7 +19,7 @@ class InvoiceXLS(models.AbstractModel):
         sheet.set_row(4, 19)
 
         # header
-        # sheet.write(1, 2, lines.partner_id.name, format1)
+        sheet.write(1, 2, lines.partner_id.name, format1)
         # sheet.write(3, 2, lines.partner_id.city, format2)
         # invoicedate = lines.invoice_date.strftime("%m/%d/%Y")
         # sheet.write(1, 8, invoicedate, format2)
@@ -75,8 +75,8 @@ class InvoiceXLS(models.AbstractModel):
         #         sheet.write(18, 6, x.price_unit)
         #         sheet.write(18, 8, x.price_subtotal)
 
-        # # calculations
-        # sheet.write(20, 1, 'TRADE DISCOUNT', format2)
+        # calculations
+        sheet.write(20, 1, 'TRADE DISCOUNT', format2)
         # POSORISDR = lines.narration.split(',')
         # sheet.write(22, 1, POSORISDR[0])
         # sheet.write(23, 1, POSORISDR[1])
@@ -91,7 +91,7 @@ class InvoiceXLS(models.AbstractModel):
         # sheet.write(27, 8, lines.amount_tax, format3)  # ADD VAT
         # sheet.write(29, 8, lines.amount_total, format3)  # total
 
-        # # footer
-        # sheet.write(30, 1, lines.invoice_user_id.name, format3)
+        # footer
+        sheet.write(30, 1, lines.invoice_user_id.name, format3)
         sheet.write(30, 3, 'RMD', format3)
         sheet.write(30, 5, 'REY DAVID', format3)
