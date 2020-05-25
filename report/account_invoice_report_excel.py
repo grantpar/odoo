@@ -61,6 +61,10 @@ class InvoiceXLS(models.AbstractModel):
                 sheet.write(12, 5, x.quantity)
                 sheet.write(12, 6, x.price_unit)
                 sheet.write(12, 8, x.price_subtotal)
+            if x.name == 'BBQ Griller':
+                sheet.write(13, 5, x.quantity)
+                sheet.write(13, 6, x.price_unit)
+                sheet.write(13, 8, x.price_subtotal)
             if x.name == 'Torch':
                 sheet.write(14, 5, x.quantity)
                 sheet.write(14, 6, x.price_unit)
