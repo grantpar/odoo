@@ -6,28 +6,28 @@ class InvoiceXLS(models.AbstractModel):
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, lines):
-        # format1 = workbook.add_format(
-        #     {'font_size': 10, 'bold': True})
-        # format2 = workbook.add_format(
-        #     {'font_size': 10, })
-        # format3 = workbook.add_format(
-        #     {'font_size': 10, })
-        # format3.set_align('right')
-        workbook.add_worksheet('Invoice Report')
-        # sheet.set_column(5, 5, 7)
-        # sheet.set_column(6, 6, 10)
-        # sheet.set_row(4, 19)
+        format1 = workbook.add_format(
+            {'font_size': 10, 'bold': True})
+        format2 = workbook.add_format(
+            {'font_size': 10, })
+        format3 = workbook.add_format(
+            {'font_size': 10, })
+        format3.set_align('right')
+        sheet = workbook.add_worksheet('Invoice Report')
+        sheet.set_column(5, 5, 7)
+        sheet.set_column(6, 6, 10)
+        sheet.set_row(4, 19)
 
-        # # header
+        # header
         # sheet.write(1, 2, lines.partner_id.name, format1)
         # sheet.write(3, 2, lines.partner_id.city, format2)
         # invoicedate = lines.invoice_date.strftime("%m/%d/%Y")
         # sheet.write(1, 8, invoicedate, format2)
-        # # items
-        # sheet.write(16, 1, '891121', format2)
-        # sheet.write(16, 2, 'CRATE mate', format1)
-        # sheet.write(17, 2, 'Gazlite Mate LPG - 230 grams', format2)
-        # sheet.write(18, 2, 'Gazlite Canister - 230 grams', format2)
+        # items
+        sheet.write(16, 1, '891121', format2)
+        sheet.write(16, 2, 'CRATE mate', format1)
+        sheet.write(17, 2, 'Gazlite Mate LPG - 230 grams', format2)
+        sheet.write(18, 2, 'Gazlite Canister - 230 grams', format2)
 
         # for x in lines.line_ids:
         #     if x.name == 'Gaz Lite 330g LPG':
@@ -93,5 +93,5 @@ class InvoiceXLS(models.AbstractModel):
 
         # # footer
         # sheet.write(30, 1, lines.invoice_user_id.name, format3)
-        # sheet.write(30, 3, 'RMD', format3)
-        # sheet.write(30, 5, 'REY DAVID', format3)
+        sheet.write(30, 3, 'RMD', format3)
+        sheet.write(30, 5, 'REY DAVID', format3)
