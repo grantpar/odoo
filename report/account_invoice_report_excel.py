@@ -24,7 +24,7 @@ class InvoiceXLS(models.AbstractModel):
         sheet.write(1, 8, lines.invoice_date.strftime("%m/%d/%Y"), format2)
 
         skuproducts = {'Gaz Lite 330g LPG', 'Gaz Lite 330g Canister', 'Eazy Kalan Stove (Red)', 'Eazy Kalan Stove (Blue)', 'Eazy Kalan Stove (Choco)',
-                       'Eazy Kalan Stove (Green)', 'Eazy Kalan Stove (Yellow)', 'Eazy Kalan Stove (White)', 'BBQ Griller', 'Torch'}
+                       'Eazy Kalan Stove (Green)', 'Eazy Kalan Stove (Yellow)', 'Eazy Kalan Stove (White)', 'BBQ Griller', 'Torch', 'Output Tax', lines.name}
         remove2 = slice(-2)
 
         i = 16
