@@ -22,29 +22,33 @@ class InvoiceXLS(models.AbstractModel):
         sheet.write(1, 2, lines.partner_id.name, format1)
         sheet.write(3, 2, lines.partner_id.name, format2)  # temporary
         sheet.write(1, 8, lines.invoice_date.strftime("%m/%d/%Y"), format2)
-        # items
-        sheet.write(16, 1, '891121', format2)
-        sheet.write(16, 2, 'CRATE mate', format1)
-        sheet.write(17, 2, 'Gazlite Mate LPG - 230 grams', format2)
-        sheet.write(18, 2, 'Gazlite Canister - 230 grams', format2)
 
-        for x in lines.line_ids:
+        skuproducts = {'Gaz Lite 330g LPG', 'Gaz Lite 330g Canister', 'Eazy Kalan Stove (Red)', 'Eazy Kalan Stove (Blue)', 'Eazy Kalan Stove (Choco)',
+                       'Eazy Kalan Stove (Green)', 'Eazy Kalan Stove (Yellow)', 'Eazy Kalan Stove (White)', 'BBQ Griller', 'Torch'}
+        remove2 = slice(-2)
+
+        i = 16
+        for x in lines.line_ids[remove2]:
             if x.name == 'Gaz Lite 330g LPG':
                 sheet.write(5, 5, x.quantity)
                 sheet.write(5, 6, x.price_unit)
                 sheet.write(5, 8, x.price_subtotal)
+                continue
             if x.name == 'Gaz Lite 330g Canister':
                 sheet.write(6, 5, x.quantity)
                 sheet.write(6, 6, x.price_unit)
                 sheet.write(6, 8, x.price_subtotal)
+                continue
             if x.name == 'Eazy Kalan Stove (Red)':
                 sheet.write(7, 5, x.quantity)
                 sheet.write(7, 6, x.price_unit)
                 sheet.write(7, 8, x.price_subtotal)
+                continue
             if x.name == 'Eazy Kalan Stove (Blue)':
                 sheet.write(8, 5, x.quantity)
                 sheet.write(8, 6, x.price_unit)
                 sheet.write(8, 8, x.price_subtotal)
+                continue
             if x.name == 'Eazy Kalan Stove (Choco)':
                 sheet.write(9, 5, x.quantity)
                 sheet.write(9, 6, x.price_unit)
@@ -53,30 +57,35 @@ class InvoiceXLS(models.AbstractModel):
                 sheet.write(10, 5, x.quantity)
                 sheet.write(10, 6, x.price_unit)
                 sheet.write(10, 8, x.price_subtotal)
+                continue
             if x.name == 'Eazy Kalan Stove (Yellow)':
                 sheet.write(11, 5, x.quantity)
                 sheet.write(11, 6, x.price_unit)
                 sheet.write(11, 8, x.price_subtotal)
+                continue
             if x.name == 'Eazy Kalan Stove (White)':
                 sheet.write(12, 5, x.quantity)
                 sheet.write(12, 6, x.price_unit)
                 sheet.write(12, 8, x.price_subtotal)
+                continue
             if x.name == 'BBQ Griller':
                 sheet.write(13, 5, x.quantity)
                 sheet.write(13, 6, x.price_unit)
                 sheet.write(13, 8, x.price_subtotal)
+                continue
             if x.name == 'Torch':
                 sheet.write(14, 5, x.quantity)
                 sheet.write(14, 6, x.price_unit)
                 sheet.write(14, 8, x.price_subtotal)
-            if x.name == 'Gaz Lite 230g LPG':
-                sheet.write(17, 5, x.quantity)
-                sheet.write(17, 6, x.price_unit)
-                sheet.write(17, 8, x.price_subtotal)
-            if x.name == 'Gaz Lite 230g Canister':
-                sheet.write(18, 5, x.quantity)
-                sheet.write(18, 6, x.price_unit)
-                sheet.write(18, 8, x.price_subtotal)
+                continue
+            while i < 19:
+                if x.name not in skuproducts:
+                    sheet.write(i, 2, x.name)
+                    sheet.write(i, 5, x.quantity)
+                    sheet.write(i, 6, x.price_unit)
+                    sheet.write(i, 8, x.price_subtotal)
+                    i += 1
+                    break
 
         # calculations
         sheet.write(20, 1, 'TRADE DISCOUNT', format2)
