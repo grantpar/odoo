@@ -23,11 +23,11 @@ class InvoiceXLS(models.AbstractModel):
         sheet.write(3, 2, lines.partner_id.name, format2)  # temporary
         sheet.write(1, 8, lines.invoice_date.strftime("%m/%d/%Y"), format2)
 
-        skuproducts = {'330g Crate - Red', 'Gaz Lite Mate 230g Canister',
-                       'Gaz Lite Mate 230g LPG', 'Mabini Mix', 'Mabini Package', 'Rizal Mix', 'Rizal Package'}
+        skuproducts = {'Gaz Lite 330g LPG', 'Gaz Lite 330g Canister', 'Eazy Kalan Stove (Red)', 'Eazy Kalan Stove (Blue)', 'Eazy Kalan Stove (Choco)',
+                       'Eazy Kalan Stove (Green)', 'Eazy Kalan Stove (Yellow)', 'Eazy Kalan Stove (White)', 'BBQ Griller', 'Torch'}
 
         i = 16
-        for x in lines.line_ids:
+        for x in lines.invoice_line_ids:
             if x.name == 'Gaz Lite 330g LPG':
                 sheet.write(5, 5, x.quantity)
                 sheet.write(5, 6, x.price_unit)
@@ -78,7 +78,7 @@ class InvoiceXLS(models.AbstractModel):
                 sheet.write(14, 8, x.price_subtotal)
                 continue
             while i < 19:
-                if x.name in skuproducts:
+                if x.name not in skuproducts:
                     sheet.write(i, 2, x.name)
                     sheet.write(i, 5, x.quantity)
                     sheet.write(i, 6, x.price_unit)
